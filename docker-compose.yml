@@ -1,0 +1,42 @@
+services:
+  db:
+    container_name: sae_postgres
+    image: postgres:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    ports:
+      - "5432:5432"
+
+
+  api:
+    container_name: sae_api
+    build: ./api
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+
+  web:
+    container_name: sae_web
+    build: ./web
+    restart: unless-stopped
+    volumes:
+      - ./web/src:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+
+
+volumes:
+  postgres_data:
