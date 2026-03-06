@@ -153,6 +153,8 @@ cf. ./docker-compose.yml
 
 ### `.env`
 ```
+# Docker Compose
+NAME=sae-web-but2-nomprenom
 # PostgreSQL
 POSTGRES_USER=sae_user
 POSTGRES_PASSWORD=sae_password
