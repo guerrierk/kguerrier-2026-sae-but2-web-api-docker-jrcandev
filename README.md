@@ -172,9 +172,7 @@ DATABASE_URL=postgresql://sae_user:sae_password@db:5432/sae_db
 
 ## 🗄️ Base de données (db)
 
-### `Dockerfile`
-cf. ./db/Dockerfile
-La base PostgreSQL est fournie via l’image officielle.
+Aucun Dockerfile spécifique n’est requis ici. La base PostgreSQL est fournie via l’image officielle.
 
 Vous utiliserez **Prisma** côté API pour gérer le schéma et les migrations.
 
