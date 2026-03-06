@@ -155,6 +155,7 @@ cf. ./docker-compose.yml
 ```
 # Docker Compose
 NAME=sae-web-but2-nomprenom
+
 # PostgreSQL
 POSTGRES_USER=sae_user
 POSTGRES_PASSWORD=sae_password
@@ -171,7 +172,8 @@ DATABASE_URL=postgresql://sae_user:sae_password@db:5432/sae_db
 
 ## 🗄️ Base de données (db)
 
-Aucun Dockerfile spécifique n’est requis ici.
+### `Dockerfile`
+cf. ./db/Dockerfile
 La base PostgreSQL est fournie via l’image officielle.
 
 Vous utiliserez **Prisma** côté API pour gérer le schéma et les migrations.
@@ -206,8 +208,18 @@ cf. ./web/src/index.php
 
 ## ▶️ Lancer le projet
 
-À la racine du projet :
+À la racine du projet, commencez par créer votre .env en le complétant correctement, et ensuite vérifiez qu'il est bien considéré par docker avec la commande : 
+```bash
+docker compose config
+```
+Vous devriez voir les informations de vos differents conteneurs, et notamment l'interpretation de votre NAME dans les différents container_name. si vous voyez encore apparaitre ${NAME}_postgres, ${NAME}_api, et ${NAME}_web, alors votre .env n'est pas correct et doit être ajusté avant d'aller plus loin.
 
+A présent, le réseau web pour vos conteneurs dockers doit être présent sur votre machine. Si il ne l'est pas encore, vous pouvez le créer avec la commande : 
+```bash
+docker network create web
+```
+
+Si tout est OK, vous pouvez construire et lancer votre projet en l'état pour vérifier que la base est opérationnelle avec la commande : 
 ```bash
 docker compose up --build
 ```
