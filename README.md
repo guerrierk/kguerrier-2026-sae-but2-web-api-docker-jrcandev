@@ -133,7 +133,8 @@ Le projet est composé de **3 services Docker**, chacun dans un sous‑répertoi
 ├── api/            # API Node.js (TypeScript, Express, Prisma)
 ├── db/             # Base de données PostgreSQL
 ├── web/            # Serveur Apache + PHP
-├── docker-compose.yml
+├── docker-compose.jrcandev.yml    # Version pour le déploiement sur JrCanDev
+├── docker-compose.yml             # Version par défaut, notamment pour le test en local
 ├── .env
 └── README.md
 ```
@@ -147,7 +148,7 @@ Chaque service est **indépendant**, mais communique via le réseau Docker.
 ### `docker-compose.yml`
 cf. ./docker-compose.yml
 
-### `docker-compose.jrcandev.yml` (utilisé pour le déploiement sur jrcandev)
+### `docker-compose.jrcandev.yml` (utilisé pour le déploiement sur JrCanDev)
 cf. ./docker-compose.jrcandev.yml
 
 ---
