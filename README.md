@@ -147,6 +147,9 @@ Chaque service est **indépendant**, mais communique via le réseau Docker.
 ### `docker-compose.yml`
 cf. ./docker-compose.yml
 
+### `docker-compose.jrcandev.yml` (utilisé pour le déploiement sur jrcandev)
+cf. ./docker-compose.jrcandev.yml
+
 ---
 
 ## 🔐 Variables d'environnement
