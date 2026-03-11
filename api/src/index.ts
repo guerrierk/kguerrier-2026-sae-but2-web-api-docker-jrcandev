@@ -4,7 +4,7 @@ import { prisma } from './client.js'
 const app = express()
 app.use(express.json())
 
-app.get('/health', async (_req, res) => {
+app.get('/api/health', async (_req, res) => {
   try {
     // Test simple de connexion PostgreSQL via Prisma
     await prisma.$queryRaw`SELECT 1`
