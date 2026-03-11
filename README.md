@@ -255,7 +255,11 @@ Chaque groupe devra notamment :
 Assurez-vous que lorsque nous téléchargeons votre dépôt final, il est complet, avec les données et est executable en l'état pour pouvoir vous évaluer ;-)
 
 ## A VALIDER AVEC SAMUEL / JrCanDev ^_^ ##
-Vous devriez pouvoir déployer votre projet sur jrcandev.
+Le projet devra être déployé sur un JrCanDev et accessible pour les enseignants chargés de l’évaluation de la SAE. 
+Vous solliciterez donc un environnement spécifique sur JrCanDev. Ce dernier sera en lien avec votre dépôt gitHub par le biais d’un webhook.
+Des éléments devront être ajustés sur votre dépot gitHub pour que le process de CI/CD soit pleinement fonctionnel
+Vous documenterez la procédure permettant de déployer votre projet à partir des sources (paramétrage du dépôt, étapes d’initialisations, quels déclencheurs, dans quel contexte, …).
+
 [[ QUELS SONT LES BESOINS D'AJUSTEMENT ?? ]]
 
 [[ QUELLE PROCEDURE A METTRE EN PLACE ?? ]]
