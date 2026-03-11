@@ -63,11 +63,12 @@ portainer:
     - /var/run/docker.sock:/var/run/docker.sock
     - portainer_data:/data
   networks:
+    - lan
     - web
   labels:
     - "traefik.enable=true"
     - "traefik.http.routers.${NAME}_portainer.entrypoints=websecure"
-    - "traefik.http.routers.${NAME}_portainer.rule=Host(`monitoring.${NAME}.jrcan.dev`)"
+    - "traefik.http.routers.${NAME}_portainer.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/monitoring`) "
     - "traefik.http.routers.${NAME}_portainer.tls=true"
     - "traefik.http.routers.${NAME}_portainer.tls.certresolver=myresolver"
     - "traefik.http.services.${NAME}_portainer.loadbalancer.server.port=9000"
