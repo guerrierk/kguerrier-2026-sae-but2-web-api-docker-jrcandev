@@ -159,7 +159,7 @@ cf. ./docker-compose.jrcandev.yml
 ### `.env`
 ```
 # Docker Compose
-NAME=sae-web-but2-nomprenom
+NAME=sae-web-but2-votrenomcompletici
 
 # PostgreSQL
 POSTGRES_USER=sae_user
@@ -169,7 +169,7 @@ POSTGRES_HOST=db
 POSTGRES_PORT=5432
 
 # API
-API_PORT=3000
+API_PORT=3070
 DATABASE_URL=postgresql://sae_user:sae_password@db:5432/sae_db
 ```
 
@@ -187,6 +187,9 @@ Vous utiliserez **Prisma** côté API pour gérer le schéma et les migrations.
 
 ### `Dockerfile`
 cf. ./api/Dockerfile
+
+### `Dockerfile.jrcandev`
+cf. ./api/Dockerfile.jrcandev
 
 ### `package.json`
 cf. ./api/package.json
@@ -228,16 +231,15 @@ docker compose up --build
 ```
 
 Accès aux services :
-
+### En version locale
 * 🌍 Application PHP : [http://localhost:8080](http://localhost:8080)
-* 🔌 API : [http://localhost:3000](http://localhost:3000)
-* ❤️ Healthcheck API : [http://localhost:3000/health](http://localhost:3000/health)
+* 🔌 API : [http://localhost:3070/api](http://localhost:3070/api)
+* ❤️ Healthcheck API : [http://localhost:3070/api/health](http://localhost:3070/api/health)
 * 🐘 PostgreSQL : localhost:5432
-
 
 Lors du premier lancement du projet, vérifiez ces 2 éléments
 * http://localhost:8080/ --> Devrait afficher "SAÉ BUT2 – Application Web PHP"
-* http://localhost:3000/health --> Devrait afficher "{"status":"ok","api":"up","database":"up"}"
+* http://localhost:3070/api/health --> Devrait afficher "{"status":"ok","api":"up","database":"up"}"
 
 ---
 
@@ -252,17 +254,29 @@ Chaque groupe devra notamment :
 * Documenter son travail
 
 ## Note complémentaire !
-Assurez-vous que lorsque nous téléchargeons votre dépôt final, il est complet, avec les données et est executable en l'état pour pouvoir vous évaluer ;-)
+Assurez-vous que lorsque **quelqu'un d'autre que vous** télécharge votre dépôt final, il est complet, avec les données et est executable en l'état pour pouvoir vous évaluer ;-)
 
-## A VALIDER AVEC SAMUEL / JrCanDev ^_^ ##
+## Déploiement JrCanDev 
 Le projet devra être déployé sur un JrCanDev et accessible pour les enseignants chargés de l’évaluation de la SAE. 
-Vous solliciterez donc un environnement spécifique sur JrCanDev. Ce dernier sera en lien avec la branche ``jrcandev`` que vous devrez avoir sur votre dépôt gitHub par le biais d’un webhook.
-Des éléments devront être ajustés sur votre dépot gitHub pour que le process de CI/CD soit pleinement fonctionnel
-Vous documenterez la procédure permettant de déployer votre projet à partir des sources (paramétrage du dépôt, étapes d’initialisations, quels déclencheurs, dans quel contexte, …).
+Vous solliciterez donc un environnement spécifique sur JrCanDev. Ce dernier sera en lien avec la branche ``jrcandev`` (que vous devrez donc **impérativement** avoir sur votre dépôt gitHub) par le biais d’un webhook.
 
-[[ QUELS SONT LES BESOINS D'AJUSTEMENT ?? ]]
+**IMPORTANT**
+Un certain nombre d'éléments devront être ajustés sur votre dépot gitHub pour que le process de CI/CD soit pleinement fonctionnel, et vous aurez besoin de valider les éléments avec les personnes de JrCanDev (qui ne sont pas à disposition H24) donc assurez-vous que cette mise en place soit opérationnel **au plus tôt** durant votre projet.
 
-[[ QUELLE PROCEDURE A METTRE EN PLACE ?? ]]
+Pour information, la journée du Mercredi 25 nous serons disponibles pour vous accompagner sur ce sujet spécifiquement.
+
+Vous documenterez la procédure permettant de déployer votre projet à partir des sources (paramétrage du dépôt, étapes d’initialisation, quel déclencheur, dans quel contexte, …).
+
+### En version hébergée sur JrCanDev
+* 🌍 Application PHP : [https://nomDeVotreProjet.jrcan.dev/](https://nomDeVotreProjet.jrcan.dev)
+* 🔌 API : [https://nomDeVotreProjet.jrcan.dev/api](https://nomDeVotreProjet.jrcan.dev/api)
+* ❤️ Healthcheck API : [https://nomDeVotreProjet.jrcan.dev/api/health](https://nomDeVotreProjet.jrcan.dev/api/health)
+* 🐘 PostgreSQL : [https://nomDeVotreProjet.jrcan.dev:5432](https://nomDeVotreProjet.jrcan.dev:5432)
+
+Lors du premier déploiement de votre projet sur JrCanDev, vérifiez ces 2 éléments
+* https://nomDeVotreProjet.jrcan.dev/ --> Devrait afficher "SAÉ BUT2 – Application Web PHP"
+* https://nomDeVotreProjet.jrcan.dev/api/health --> Devrait afficher "{"status":"ok","api":"up","database":"up"}"
+
 
 ---
 

@@ -15,6 +15,7 @@ services:
   api:
     container_name: ${NAME}_api
     build: ./api
+    dockerfile: Dockerfile
     restart: unless-stopped
     env_file:
       - .env
@@ -22,7 +23,7 @@ services:
       - ./api:/app
       - /app/node_modules
     ports:
-      - "3000:3000"
+      - "3070:3070"
     depends_on:
       - db
     networks:
@@ -34,11 +35,12 @@ services:
       - "traefik.http.routers.${NAME}_api.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/api`)"
       - "traefik.http.routers.${NAME}_api.tls=true"
       - "traefik.http.routers.${NAME}_api.tls.certresolver=myresolver"
-      - "traefik.http.services.${NAME}_api.loadbalancer.server.port=3000"
+      - "traefik.http.services.${NAME}_api.loadbalancer.server.port=3070"
 
   web:
     container_name: ${NAME}_web
     build: ./web
+    dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
       - ./web/src:/var/www/html

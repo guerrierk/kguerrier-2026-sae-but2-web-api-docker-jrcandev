@@ -1,0 +1,22 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# 1. Dépendances
+COPY package*.json ./
+RUN npm install
+
+# 2. Schéma Prisma (obligatoire avant generate)
+COPY prisma ./prisma
+
+# 3. Génération du client Prisma
+RUN npx prisma generate
+
+# 3. Compilation du src en build
+RUN npm run build
+
+# 4. Code applicatif
+COPY . .
+
+EXPOSE 3070
+CMD ["npm", "run", "start"]
