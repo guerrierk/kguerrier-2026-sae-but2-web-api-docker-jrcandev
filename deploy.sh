@@ -50,7 +50,7 @@ fi
 echo "=== Rebuilding stack ==="
 docker compose down
 docker compose pull
-docker compose build --no-cache
+docker compose build -f docker-compose.jrcandev.yml --no-cache
 docker compose up -d
 
 echo "Deployment completed at $(date)"
