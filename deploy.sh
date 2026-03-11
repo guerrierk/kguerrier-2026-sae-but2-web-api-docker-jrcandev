@@ -10,7 +10,7 @@
 set -e
 cd "$(dirname "$0")"
 
-BRANCH="main"
+BRANCH="jrcandev"
 
 echo "=== Deploy script started at $(date) ==="
 
