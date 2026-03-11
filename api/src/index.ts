@@ -26,7 +26,7 @@ app.get('/api/health', async (_req, res) => {
 })
 
 
-const port = process.env.API_PORT || 3000
+const port = process.env.API_PORT || 3060
 app.listen(port, () => {
     console.log(`API running on port ${port}`)
 })
