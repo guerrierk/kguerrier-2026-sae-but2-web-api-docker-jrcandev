@@ -15,5 +15,5 @@ RUN npx prisma generate
 # 4. Code applicatif
 COPY . .
 
-EXPOSE 3000
+EXPOSE 3070
 CMD ["npm", "run", "dev"]
