@@ -14,8 +14,9 @@ services:
 
   api:
     container_name: ${NAME}_api
-    build: ./api
-    dockerfile: Dockerfile
+    build: 
+      context: ./api
+      dockerfile: Dockerfile
     restart: unless-stopped
     env_file:
       - .env
@@ -39,8 +40,9 @@ services:
 
   web:
     container_name: ${NAME}_web
-    build: ./web
-    dockerfile: Dockerfile
+    build: 
+      context: ./web
+      dockerfile: Dockerfile
     restart: unless-stopped
     volumes:
       - ./web/src:/var/www/html

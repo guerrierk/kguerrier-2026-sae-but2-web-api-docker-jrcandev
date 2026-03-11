@@ -1,10 +1,11 @@
 import express from 'express'
+import type {Request, Response} from 'express';
 import { prisma } from './client.js'
 
 const app = express()
 app.use(express.json())
 
-app.get('/api/health', async (_req, res) => {
+app.get('/api/health', async ( _req: Request, res: Response) => {
   try {
     // Test simple de connexion PostgreSQL via Prisma
     await prisma.$queryRaw`SELECT 1`
@@ -26,7 +27,7 @@ app.get('/api/health', async (_req, res) => {
 })
 
 
-const port = process.env.API_PORT
+const port = process.env.API_PORT || 3070
 app.listen(port, () => {
     console.log(`API running on port ${port}`)
 })
