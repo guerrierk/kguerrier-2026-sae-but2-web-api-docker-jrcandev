@@ -12,11 +12,11 @@ COPY prisma ./prisma
 # 3. Génération du client Prisma
 RUN npx prisma generate
 
-# 3. Compilation du src en build
-RUN npm run build
-
 # 4. Code applicatif
 COPY . .
+
+# 5. Compilation des sources pour une version en production
+RUN npm run build
 
 EXPOSE 3070
 CMD ["npm", "run", "start"]
