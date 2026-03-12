@@ -48,7 +48,7 @@ else
 fi
 
 echo "=== Rebuilding stack ==="
-docker compose down
+docker compose -f docker-compose.jrcandev.yml down -v
 docker compose -f docker-compose.jrcandev.yml build --no-cache
 docker compose -f docker-compose.jrcandev.yml up -d
 
