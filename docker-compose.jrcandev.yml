@@ -73,6 +73,7 @@ services:
         - web
       labels:
         - "traefik.enable=true"
+        - "traefik.docker.network=web"
         - "traefik.http.routers.${NAME}_dockge.entrypoints=websecure"
         - "traefik.http.routers.${NAME}_dockge.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/monitoring`)"
         - "traefik.http.routers.${NAME}_dockge.middlewares=${NAME}_dockge-stripprefix"
