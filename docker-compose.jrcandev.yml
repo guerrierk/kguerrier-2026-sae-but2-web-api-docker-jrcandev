@@ -56,36 +56,38 @@ services:
       - "traefik.http.services.${NAME}_web.loadbalancer.server.port=80"
       - "traefik.http.routers.${NAME}_web.priority=1"
 
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: ${NAME}_portainer
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
-    networks:
-      - lan
-      - web
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=web"
-      - "traefik.http.routers.${NAME}_portainer.entrypoints=websecure"
-      - "traefik.http.routers.${NAME}_portainer.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/monitoring`)"
-      - "traefik.http.routers.${NAME}_portainer.middlewares=${NAME}_portainer-stripprefix"
-      - "traefik.http.middlewares.${NAME}_portainer-stripprefix.stripprefix.forceSlash=false"
-      - "traefik.http.middlewares.${NAME}_portainer-stripprefix.stripprefix.prefixes=/monitoring"
-      - "traefik.http.routers.${NAME}_portainer.tls=true"
-      - "traefik.http.routers.${NAME}_portainer.tls.certresolver=myresolver"
-      - "traefik.http.services.${NAME}_portainer.loadbalancer.server.port=9000"
-      - "traefik.http.routers.${NAME}_portainer.priority=90"
+
+  dockge:
+      container_name: ${NAME}_dockge
+      image: louislam/dockge:1
+      restart: unless-stopped
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
+        - ./dockge_data:/app/data
+        # pour monter uniquement cette stack
+        - .:/opt/stacks/${NAME}
+      environment:
+        - DOCKGE_STACKS_DIR=/opt/stacks
+      networks:
+        - lan
+        - web
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.${NAME}_dockge.entrypoints=websecure"
+        - "traefik.http.routers.${NAME}_dockge.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/monitoring`)"
+        - "traefik.http.routers.${NAME}_dockge.middlewares=${NAME}_dockge-stripprefix"
+        - "traefik.http.middlewares.${NAME}_dockge-stripprefix.stripprefix.forceSlash=false"
+        - "traefik.http.middlewares.${NAME}_dockge-stripprefix.stripprefix.prefixes=/monitoring"
+        - "traefik.http.routers.${NAME}_dockge.tls=true"
+        - "traefik.http.routers.${NAME}_dockge.tls.certresolver=myresolver"
+        - "traefik.http.services.${NAME}_dockge.loadbalancer.server.port=5001"
+        - "traefik.http.routers.${NAME}_dockge.priority=90"
 
 
 volumes:
   postgres_data:
     name: ${NAME}_postgres_data
-  portainer_data:
-    name: ${NAME}_portainer_data
-
+    
 networks:
   web:
     external: true
