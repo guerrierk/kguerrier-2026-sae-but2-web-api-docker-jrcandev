@@ -68,7 +68,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.${NAME}_portainer.entrypoints=websecure"
-      - "traefik.http.routers.${NAME}_portainer.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/monitoring`) "
+      - "traefik.http.routers.${NAME}_portainer.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/monitoring`)"
       - "traefik.http.routers.${NAME}_portainer.tls=true"
       - "traefik.http.routers.${NAME}_portainer.tls.certresolver=myresolver"
       - "traefik.http.services.${NAME}_portainer.loadbalancer.server.port=9000"
