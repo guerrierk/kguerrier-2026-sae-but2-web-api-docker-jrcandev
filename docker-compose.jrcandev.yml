@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     volumes:
-      - postgres_data:/var/lib/postgresql
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - lan
 
@@ -74,7 +74,6 @@ services:
       - "traefik.http.routers.${NAME}_portainer.middlewares=${NAME}_portainer-stripprefix"
       - "traefik.http.middlewares.${NAME}_portainer-stripprefix.stripprefix.forceSlash=false"
       - "traefik.http.middlewares.${NAME}_portainer-stripprefix.stripprefix.prefixes=/monitoring"
-      - "traefik.http.middlewares.${NAME}_portainer-stripprefix.stripprefixregex.regex=^/monitoring"
       - "traefik.http.routers.${NAME}_portainer.tls=true"
       - "traefik.http.routers.${NAME}_portainer.tls.certresolver=myresolver"
       - "traefik.http.services.${NAME}_portainer.loadbalancer.server.port=9000"
