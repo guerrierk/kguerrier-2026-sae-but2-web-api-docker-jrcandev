@@ -55,23 +55,23 @@ services:
       - "traefik.http.routers.${NAME}_web.tls.certresolver=myresolver"
       - "traefik.http.services.${NAME}_web.loadbalancer.server.port=80"
 
-portainer:
-  image: portainer/portainer-ce:latest
-  container_name: ${NAME}_portainer
-  restart: unless-stopped
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-    - portainer_data:/data
-  networks:
-    - lan
-    - web
-  labels:
-    - "traefik.enable=true"
-    - "traefik.http.routers.${NAME}_portainer.entrypoints=websecure"
-    - "traefik.http.routers.${NAME}_portainer.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/monitoring`) "
-    - "traefik.http.routers.${NAME}_portainer.tls=true"
-    - "traefik.http.routers.${NAME}_portainer.tls.certresolver=myresolver"
-    - "traefik.http.services.${NAME}_portainer.loadbalancer.server.port=9000"
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: ${NAME}_portainer
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - lan
+      - web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${NAME}_portainer.entrypoints=websecure"
+      - "traefik.http.routers.${NAME}_portainer.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/monitoring`) "
+      - "traefik.http.routers.${NAME}_portainer.tls=true"
+      - "traefik.http.routers.${NAME}_portainer.tls.certresolver=myresolver"
+      - "traefik.http.services.${NAME}_portainer.loadbalancer.server.port=9000"
 
 volumes:
   postgres_data:
