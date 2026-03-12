@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_sae_data:/var/lib/postgresql/data
     networks:
       - lan
 
@@ -86,7 +86,7 @@ services:
 
 
 volumes:
-  postgres_data:
+  postgres_sae_data:
     name: ${NAME}_postgres_data
     
 networks:
