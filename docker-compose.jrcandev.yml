@@ -71,6 +71,9 @@ services:
       - "traefik.docker.network=web"
       - "traefik.http.routers.${NAME}_portainer.entrypoints=websecure"
       - "traefik.http.routers.${NAME}_portainer.rule=Host(`${NAME}.jrcan.dev`) && PathPrefix(`/monitoring`)"
+      - "traefik.http.routers.${NAME}_portainer.middlewares=${NAME}_portainer-stripprefix"
+      - "traefik.http.middlewares.${NAME}_portainer-stripprefix.stripprefix.forceSlash=false"
+      - "traefik.http.middlewares.${NAME}_portainer-stripprefix.stripprefix.prefixes=/monitoring"
       - "traefik.http.routers.${NAME}_portainer.tls=true"
       - "traefik.http.routers.${NAME}_portainer.tls.certresolver=myresolver"
       - "traefik.http.services.${NAME}_portainer.loadbalancer.server.port=9000"
@@ -79,7 +82,9 @@ services:
 
 volumes:
   postgres_data:
+    name: ${NAME}_postgres_data
   portainer_data:
+    name: ${NAME}_portainer_data
 
 networks:
   web:
